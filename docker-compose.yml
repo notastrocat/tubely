@@ -1,0 +1,16 @@
+services:
+  # Dev Environment (existing Dockerfile)
+  app:
+    build:
+        context: .
+        args:
+            UID: ${UID:-1000}
+            GID: ${GID:-1000}
+    volumes:
+      - .:/tubely
+    stdin_open: true # Equivalent to -i
+    tty: true        # Equivalent to -t
+    # environment:
+    #  - DATABASE_URL=sqlite:./tubely.db
+    ports:
+      - "8091:8091"
