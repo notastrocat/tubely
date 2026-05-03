@@ -16,7 +16,7 @@ import (
 )
 
 const (
-	maxMemory = 10 << 20 // 10 MB
+	maxThumbnailMemory = 10 << 20 // 10 MB
 )
 
 func (cfg *apiConfig) handlerUploadThumbnail(w http.ResponseWriter, r *http.Request) {
@@ -42,7 +42,7 @@ func (cfg *apiConfig) handlerUploadThumbnail(w http.ResponseWriter, r *http.Requ
 	fmt.Println("uploading thumbnail for video", videoID, "by user", userID)
 
 	// Set max memory to parse the thumbnail file
-	err = r.ParseMultipartForm(maxMemory)
+	err = r.ParseMultipartForm(maxThumbnailMemory)
 	if err != nil {
 		respondWithError(w, http.StatusInternalServerError, "Couldn't parse the file on server", err)
 		return
